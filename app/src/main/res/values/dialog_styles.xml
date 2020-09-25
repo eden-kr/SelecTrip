@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="buttonBarButtonStyle" parent="Widget.AppCompat.Button.Borderless.Colored">
+    </style>
+    <style name="buttonBarButtonStyle.Negative">
+        <item name="android:textColor">#DF2766</item>
+    </style>
+
+    <style name="buttonBarButtonStyle.Positive">
+        <item name="android:textColor">#DF2766</item>
+    </style>
+</resources>

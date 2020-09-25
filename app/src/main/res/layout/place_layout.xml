@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="15dp"
+        android:layout_marginLeft="5dp"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/place_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:fontFamily="@font/nanum_acb"
+                android:text="호베르 에 루이즈"
+                android:layout_marginLeft="15dp"
+                android:textSize="20dp" />
+            <TextView
+                android:id="@+id/place_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_below="@id/place_name"
+                android:text="레스토랑" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:text="·"
+                android:layout_toRightOf="@id/place_type"
+                android:layout_alignBottom="@id/place_type"
+                android:id="@+id/t"/>
+
+            <TextView
+                android:id="@+id/place_city"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@id/t"
+                android:layout_below="@id/place_name"
+                android:text="파리" />
+
+            <TextView
+                android:id="@+id/review_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@id/rating_place"
+                android:layout_alignBottom="@id/rating_place"
+                android:text="(0)" />
+
+            <RatingBar
+                android:id="@+id/rating_place"
+                style="@style/Widget.AppCompat.RatingBar.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/place_type"
+                android:layout_alignLeft="@id/place_type"
+                android:layout_marginTop="30dp"
+                android:numStars="5"
+                android:stepSize="0.5" />
+
+
+        </RelativeLayout>
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="130dp"
+        android:layout_weight="0.8"
+        android:src="@drawable/paris"
+        android:layout_marginTop="10dp"
+        android:id="@+id/place_img"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/round_no_color"
+        android:scaleType="centerCrop"/>
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:background="#939393"/>
+</LinearLayout>

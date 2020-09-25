@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RecommandActivity">
+
+
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/recToolbar"
+            app:titleTextAppearance="@id/toolbarText">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/blakc_back"
+                android:id="@+id/toolbarBack_rec"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="셀렉트립 추천"
+                android:gravity="center"
+                android:layout_marginRight="25dp"
+                android:fontFamily="@font/nanum_acb"
+                android:id="@+id/toolbarText"
+                android:textSize="20dp" />
+        </androidx.appcompat.widget.Toolbar>
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_weight="1"
+    android:padding="10dp"
+    android:id="@+id/imgBackground"
+    android:background="@drawable/swiss_rec">
+    <TextView
+        android:id="@+id/id_recommend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="50dp"
+        android:fontFamily="@font/nanum_acb"
+        android:text="김망고님"
+        android:textColor="#FBFFFE"
+        android:textSize="40dp"
+        />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nanum_acb"
+        android:layout_below="@+id/country_rec"
+        android:layout_alignLeft="@+id/country_rec"
+        android:text="어떠세요?"
+        android:textColor="#F0F6F5"
+        android:textSize="30dp"
+         />
+
+    <TextView
+        android:id="@+id/country_rec"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nanum_acb"
+        android:text="그린델발트"
+        android:layout_alignLeft="@+id/id_recommend"
+        android:layout_marginLeft="15dp"
+        android:layout_below="@+id/id_recommend"
+        android:textColor="#F0F6F5"
+        android:textSize="30dp"
+         />
+
+    <ImageView
+        android:id="@+id/next_rec"
+        android:layout_width="49dp"
+        android:layout_height="53dp"
+        android:layout_below="@id/country_rec"
+        android:layout_marginTop="-9dp"
+        android:layout_toRightOf="@id/textView2"
+        android:clickable="true"
+        android:src="@drawable/backbtnwhite" />
+</RelativeLayout>
+<View
+    android:layout_width="match_parent"
+    android:layout_height="40dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="2"
+        android:textSize="17dp"
+        android:id="@+id/recText"
+        android:text="김망고님의 취향저격 Pick"
+        android:fontFamily="@font/nanum_acb"
+        android:gravity="center|left"
+        android:layout_marginLeft="20dp"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="20dp"/>
+   <androidx.recyclerview.widget.RecyclerView
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:orientation="horizontal"
+       android:layout_weight="1.5"
+       android:id="@+id/recycle_rec"/>
+</LinearLayout>

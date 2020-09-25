@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    tools:openDrawer="end">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="230dp"
+            android:background="@drawable/z3"
+            android:orientation="vertical">
+            <ImageView
+                android:id="@+id/back_drawer"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="right"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="30dp"
+                android:clickable="true"
+                android:src="@drawable/x_black" />
+
+            <TextView
+                android:id="@+id/drawer_nickname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginBottom="40dp"
+                android:fontFamily="@font/nanum_acb"
+                android:textColor="#606060"
+                android:text="김망고"
+                android:textSize="30dp" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginLeft="50dp">
+
+                <ImageView
+                    android:id="@+id/s"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_grade_black_24dp" />
+
+                <TextView
+                    android:id="@+id/drawer_bookmark"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/s"
+                    android:layout_alignLeft="@+id/s"
+                    android:text="즐겨찾기" />
+
+                <ImageView
+                    android:id="@+id/r"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="50dp"
+                    android:layout_toRightOf="@+id/s"
+                    android:src="@drawable/ic_mode_edit_black_24dp" />
+
+                <TextView
+                    android:id="@+id/drawer_review"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/r"
+                    android:layout_alignLeft="@+id/r"
+                    android:layout_toRightOf="@id/drawer_bookmark"
+                    android:text="리뷰" />
+            </RelativeLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2px"
+                android:layout_marginTop="40dp"
+                android:background="#8A8A8A" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</androidx.drawerlayout.widget.DrawerLayout>

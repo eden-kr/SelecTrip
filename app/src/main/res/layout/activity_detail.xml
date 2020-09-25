@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".DetailActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="250dp">
+
+
+        <ImageView
+            android:id="@+id/detail_country_img"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/paris" />
+
+
+        <ImageView
+            android:id="@+id/close_detail"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="16dp"
+            android:clickable="true"
+            android:src="@drawable/close"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.043"
+            app:layout_constraintStart_toStartOf="@+id/detail_country_img"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/detail_country_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="72dp"
+            android:fontFamily="@font/nanum_acb"
+            android:text="파리,"
+            android:textColor="#FFFFFF"
+            android:textSize="50dp"
+            app:layout_constraintEnd_toEndOf="@+id/detail_country_img"
+            app:layout_constraintHorizontal_bias="0.141"
+            app:layout_constraintStart_toStartOf="@+id/detail_country_img"
+            app:layout_constraintTop_toTopOf="@+id/detail_country_img" />
+
+        <TextView
+            android:id="@+id/detail_country_name2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nanum_acb"
+            android:text="여행을 준비하세요"
+            android:textColor="#FFFFFF"
+            android:textSize="35dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.284"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/detail_country_name" />
+
+        <ImageView
+            android:id="@+id/drawer_detail"
+            android:layout_width="32dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="16dp"
+            android:clickable="true"
+            android:src="@drawable/drawer"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.952"
+            app:layout_constraintStart_toEndOf="@+id/close_detail"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@drawable/detail_stroke"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:padding="10dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="3"
+            android:src="@drawable/place"
+            android:padding="5dp"
+            android:id="@+id/hotplace"
+            android:clickable="true"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="핫플레이스"
+                android:layout_gravity="center"
+                android:fontFamily="@font/nanum_acb"
+                android:textSize="15dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="10dp"
+            android:orientation="vertical">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="3"
+            android:src="@drawable/rest"
+            android:id="@+id/restaurant"
+            android:padding="15dp"
+            android:clickable="true"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="레스토랑"
+                android:layout_gravity="center"
+                android:fontFamily="@font/nanum_acb"
+                android:textSize="15dp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="3"
+            android:padding="10dp"
+            android:rotation="-25"
+            android:src="@drawable/skyscan"
+            android:id="@+id/skyScanner"
+            android:clickable="true"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="항공권"
+                android:layout_gravity="center"
+                android:fontFamily="@font/nanum_acb"
+                android:textSize="15dp"/>
+        </LinearLayout>
+    </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="#E8E8E8"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="30dp"
+                android:text="날씨"
+                android:fontFamily="@font/nanum_acb"
+                android:textSize="20dp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="20dp"
+                android:padding="20dp">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="horizontal"
+                    android:background="@drawable/round_gray"
+                    android:id="@+id/detailWeather"/>
+
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="#E8E8E8"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="20dp"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="환율 계산기"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="20dp"
+                android:fontFamily="@font/nanum_acb"
+                android:textSize="20dp"/>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:layout_gravity="center"
+                android:orientation="vertical"
+                android:background="@drawable/round_gray">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#919191"
+                    app:layout_constraintBottom_toBottomOf="@+id/kmoney"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/fmoney"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:inputType="number"
+                    android:padding="5dp"
+                    android:textAlignment="viewEnd"
+                    android:textColor="#838383"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/fmoneyName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="EUR"
+                    android:textSize="15dp"
+                    android:textStyle="bold"
+                    android:textColor="#4D5DB8"
+                    app:layout_constraintBottom_toBottomOf="@+id/fmoney"
+                    app:layout_constraintEnd_toEndOf="@+id/fmoney"
+                    app:layout_constraintHorizontal_bias="0.012"
+                    app:layout_constraintStart_toStartOf="@+id/fmoney"
+                    app:layout_constraintTop_toTopOf="@+id/fmoney" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:text="KRW"
+                    android:textStyle="bold"
+                    android:textSize="15dp"
+                    android:textColor="#4D5DB8"
+                    app:layout_constraintBottom_toBottomOf="@+id/kmoney"
+                    app:layout_constraintStart_toStartOf="@+id/kmoney"
+                    app:layout_constraintTop_toBottomOf="@+id/fmoney" />
+
+                <EditText
+                    android:id="@+id/kmoney"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/fmoney"
+                    android:background="@null"
+                    android:inputType="number"
+                    android:padding="5dp"
+                    android:textAlignment="viewEnd"
+                    android:textColor="#838383"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.533"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/fmoney"
+                    app:layout_constraintVertical_bias="0.0" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</ScrollView>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/round_no_color"
+    android:padding="10dp"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="08-03"
+        android:textSize="15dp"
+        android:fontFamily="@font/nanum_acb"
+        android:layout_gravity="center"
+        android:id="@+id/date"
+        />
+    <ImageView
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/c3"
+        android:layout_gravity="center"
+        android:id="@+id/weatherImg"
+        android:layout_marginBottom="5dp"
+        />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="23℃"
+            android:textSize="15dp"
+            android:fontFamily="@font/nanum_acb"
+            android:id="@+id/minTmp"
+            />
+        <TextView
+            android:layout_width="20dp"
+            android:layout_height="wrap_content"
+            android:text=" /"
+            android:textSize="15dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="28℃"
+            android:textSize="15dp"
+            android:id="@+id/maxTmp"
+            android:fontFamily="@font/nanum_acb"
+            />
+    </LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="10%"
+        android:textColor="#5968BC"
+        android:textSize="15dp"
+        android:fontFamily="@font/nanum_acb"
+        android:layout_gravity="center"
+        android:id="@+id/rain"/>
+
+
+
+</LinearLayout>

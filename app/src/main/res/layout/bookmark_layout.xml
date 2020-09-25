@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@drawable/round_no_color"
+    android:orientation="vertical"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="5dp"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:padding="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="0.8">
+
+            <ImageView
+                android:id="@+id/myImage"
+                android:layout_width="140dp"
+                android:layout_height="130dp"
+                android:background="@drawable/round_no_color"
+                android:clickable="true"
+                android:scaleType="fitXY"
+                android:src="@drawable/paris" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:gravity="center|left"
+            android:clickable="true"
+            android:layout_marginLeft="15dp"
+            android:layout_weight="1">
+            <TextView
+                android:id="@+id/myPlace"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nanum_acb"
+                android:text="에펠탑"
+                android:textSize="20dp" />
+            <TextView
+                android:id="@+id/myType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_below="@id/myPlace"
+                android:text="레스토랑" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:text="·"
+                android:layout_toRightOf="@id/myType"
+                android:layout_alignBottom="@id/myType"
+                android:id="@+id/s"/>
+
+            <TextView
+                android:id="@+id/myCity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@id/s"
+                android:layout_below="@id/myPlace"
+                android:text="파리" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/myCity"
+                android:text="오전 11:00 -오후 11:00"
+                android:id="@+id/myHour"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/myHour"
+                android:layout_alignLeft="@id/myHour"
+                android:textSize="13dp"
+                android:text="에펠탑 짜뚜작시장 ㅇㄻㅁㄴㅇ"
+                android:layout_marginTop="10dp"
+                android:id="@+id/myAddress"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2px"
+        android:layout_marginTop="10dp"
+        android:background="#D1D1D1"/>
+</LinearLayout>

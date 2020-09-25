@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@drawable/round_no_color"
+    android:orientation="vertical"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="5dp"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:padding="10dp"
+            android:layout_weight="0.8">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="130dp"
+                android:src="@drawable/paris"
+                android:id="@+id/marker_img"
+                android:clickable="true"
+                android:background="@drawable/round_no_color"
+                android:scaleType="centerCrop"/>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:gravity="center|left"
+            android:clickable="true"
+            android:layout_marginLeft="15dp"
+            android:layout_weight="1">
+            <TextView
+                android:id="@+id/marker_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nanum_acb"
+                android:text="호베르 에 루이즈"
+                android:textSize="20dp" />
+            <TextView
+                android:id="@+id/marker_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_below="@id/marker_name"
+                android:text="레스토랑" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:text="·"
+                android:layout_toRightOf="@id/marker_type"
+                android:layout_alignBottom="@id/marker_type"
+                android:id="@+id/s"/>
+
+            <TextView
+                android:id="@+id/marker_city"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@id/s"
+                android:layout_below="@id/marker_name"
+                android:text="파리" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/marker_city"
+                android:text="오전 11:00 -오후 11:00"
+                android:id="@+id/marker_hour"
+                />
+            <Button
+                android:layout_width="140dp"
+                android:layout_height="30dp"
+                android:layout_below="@id/marker_hour"
+                android:id="@+id/marker_click"
+                android:text="상세정보 확인"
+                android:textSize="12dp"
+                android:fontFamily="@font/nanum_acb"
+                android:textColor="#FFFFFF"
+                android:background="@drawable/round_navy"
+                android:layout_marginTop="15dp"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

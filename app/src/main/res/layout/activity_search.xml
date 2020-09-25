@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".SearchActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <EditText
+            android:id="@+id/topic"
+            android:layout_width="287dp"
+            android:layout_height="45dp"
+            android:background="@drawable/round_gray"
+            android:fontFamily="@font/nanum_acb"
+            android:hint="현재 검색어"
+            android:padding="10dp"
+            android:textColor="#8F8E8E"
+            android:textSize="15dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.645"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.507" />
+
+        <ImageView
+            android:id="@+id/clear"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:clickable="true"
+            android:src="@drawable/x"
+            app:layout_constraintBottom_toBottomOf="@+id/topic"
+            app:layout_constraintEnd_toEndOf="@+id/topic"
+            app:layout_constraintHorizontal_bias="0.958"
+            app:layout_constraintStart_toStartOf="@+id/topic"
+            app:layout_constraintTop_toTopOf="@+id/topic"
+            app:layout_constraintVertical_bias="0.433" />
+
+        <ImageView
+            android:id="@+id/backSearch"
+            android:layout_width="40dp"
+            android:layout_height="30dp"
+            android:clickable="true"
+            android:src="@drawable/back_btn"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/topic"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="도시명"
+            android:gravity="center"
+            android:clickable="true"
+            android:fontFamily="@font/nanum_acb"
+            android:id="@+id/serachCity"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="플레이스명"
+            android:clickable="true"
+            android:gravity="center"
+            android:fontFamily="@font/nanum_acb"
+            android:id="@+id/searchPlace"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="나라명"
+            android:clickable="true"
+            android:gravity="center"
+            android:fontFamily="@font/nanum_acb"
+            android:id="@+id/searchCountry"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="2px"
+        android:layout_weight="0.1"
+        android:orientation="horizontal">
+        <View
+            android:layout_width="0dp"
+            android:layout_height="2px"
+            android:layout_marginLeft="5dp"
+            android:background="#373F6C"
+            android:id="@+id/searchSlider"
+            android:layout_weight="1"/>
+        <View
+            android:layout_width="0dp"
+            android:layout_height="2px"
+            android:layout_weight="1"/>
+        <View
+            android:layout_width="0dp"
+            android:layout_height="2px"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
+    <FrameLayout
+        android:id="@+id/searchFragment"
+        android:layout_width="match_parent"
+        android:layout_weight="5"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" >
+
+    </FrameLayout>
+
+
+</LinearLayout>

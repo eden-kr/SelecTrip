@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "374176637489",
+    "firebase_url": "https://selectrip-c75a1.firebaseio.com",
+    "project_id": "selectrip-c75a1",
+    "storage_bucket": "selectrip-c75a1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:374176637489:android:50ed578af72005ebc5ab10",
+        "android_client_info": {
+          "package_name": "com.example.selectrip"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "374176637489-jnb3ugcbrj0rerva304670bpb064s9ee.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.selectrip",
+            "certificate_hash": "de928adde069dda00298ccb85b3945336e045945"
+          }
+        },
+        {
+          "client_id": "374176637489-b9jmh488k29vreicnv7dlgl99ng5o9rs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCGpDmcUe8xn-1xvMt4Cjdt9B_q-dTM72I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "374176637489-b9jmh488k29vreicnv7dlgl99ng5o9rs.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

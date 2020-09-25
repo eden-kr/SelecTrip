@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="17dp"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/nanum_acb"
+        android:textColor="#A6A6A6"
+        android:text="셀렉트립에 가입된 이메일을 입력해주세요."
+        android:layout_marginBottom="20dp"
+        android:padding="15dp"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/rounding_white"
+        android:layout_marginRight="30dp"
+        android:layout_marginLeft="30dp"
+        android:inputType="textEmailAddress"
+        android:hint="email"
+        android:padding="10dp"
+        android:id="@+id/set_email"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:text="확인"
+        android:textSize="17dp"
+        android:id="@+id/email_ok"
+        android:textColor="#FFFFFF"
+        android:fontFamily="@font/nanum_acb"
+        android:background="@drawable/round_blue"
+        android:layout_marginRight="30dp"
+        android:layout_marginLeft="30dp"/>
+
+</LinearLayout>
