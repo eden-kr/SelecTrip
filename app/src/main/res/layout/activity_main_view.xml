@@ -1,158 +1,168 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".MainViewActivity">
 
-    <LinearLayout
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="250dp"
+        android:fitsSystemWindows="true">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout2"
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/collapsing_toolbar"
             android:layout_width="match_parent"
-            android:layout_height="250dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_height="wrap_content"
+            android:background="@drawable/z3"
+            android:fitsSystemWindows="true"
+            app:contentScrim="#ffc5c6e5"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-            <ImageView
-                android:id="@+id/background_main"
+            <androidx.appcompat.widget.Toolbar
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/main_round"
-                android:scaleType="fitXY"
-                android:src="@drawable/z3"
-                tools:layout_editor_absoluteX="0dp"
-                tools:layout_editor_absoluteY="0dp" />
+                android:layout_height="150dp"
+                android:layout_gravity="top"
+                app:layout_collapseMode="pin">
 
-            <TextView
-                android:id="@+id/textView6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:fontFamily="@font/puddingb"
-                android:text="SelecTrip"
-                android:textColor="#FFFFFF"
-                android:textSize="40dp"
-                app:layout_constraintBottom_toTopOf="@+id/search_main"
-                app:layout_constraintEnd_toStartOf="@+id/drawer_madin"
-                app:layout_constraintHorizontal_bias="0.605"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.009" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:layout_editor_absoluteX="16dp"
+                    tools:layout_editor_absoluteY="52dp">
 
-            <ImageView
-                android:id="@+id/drawer_madin"
-                android:layout_width="30dp"
-                android:layout_height="40dp"
-                android:clickable="true"
-                android:src="@drawable/drawer"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.944"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.157" />
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/textView6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/puddingb"
+                        android:text="SelecTrip"
+                        android:textColor="#FFFFFF"
+                        android:textSize="40dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/nanum_acb"
-                android:gravity="center"
-                android:text="김망고님, 어디로 떠나볼까요?"
-                android:textColor="#FFFFFF"
-                android:textSize="25dp"
-                app:layout_constraintBottom_toTopOf="@+id/search_main"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/background_main"
-                app:layout_constraintTop_toBottomOf="@+id/textView6" />
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/drawer_madin"
+                        android:layout_width="30dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center|right"
+                        android:clickable="true"
+                        android:src="@drawable/drawer"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.736"
+                        app:layout_constraintStart_toEndOf="@+id/textView6"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-            <EditText
-                android:id="@+id/search_main"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/whiteround"
-                android:hint="  검색어를 입력하세요"
-                android:padding="10dp"
-                android:textColor="#737373"
-                android:textColorHint="#BFBFBF"
-                android:textSize="17dp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.585"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.84" />
-
-            <ImageView
-                android:id="@+id/searchBtn_main"
-                android:layout_width="32dp"
-                android:layout_height="43dp"
-                android:layout_marginBottom="17dp"
-                android:clickable="true"
-                android:src="@drawable/ic_search_black_24dp"
-                app:layout_constraintBottom_toBottomOf="@+id/search_main"
-                app:layout_constraintEnd_toEndOf="@+id/search_main"
-                app:layout_constraintTop_toTopOf="@+id/search_main"
-                app:layout_constraintVertical_bias="0.0" />
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/main_round"
-            android:orientation="vertical">
-
-            <RelativeLayout
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.appcompat.widget.Toolbar>
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:id="@+id/textView5"
+                android:layout_gravity="bottom"
+                android:id="@+id/gone_layout"
+                android:layout_marginBottom="35dp"
+                android:layout_height="100dp">
+
+                <EditText
+                    android:id="@+id/search_main"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:background="@drawable/whiteround"
+                    android:clickable="true"
+                    android:drawableLeft="@drawable/ic_search_black_24dp"
+                    android:hint="  검색어를 입력하세요"
+                    android:padding="10dp"
+                    android:textColor="#737373"
+                    android:textColorHint="#BFBFBF"
+                    android:textSize="17dp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.714" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/textView3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginBottom="30dp"
-                    android:layout_alignParentLeft="true"
-                    android:layout_centerInParent="true"
+                    android:layout_gravity="center|bottom"
+                    android:layout_marginBottom="56dp"
                     android:fontFamily="@font/nanum_acb"
-                    android:text="도시 리스트  >  "
-                    android:textSize="15dp" />
+                    android:text="김망고님, 어디로 떠나볼까요?"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/search_main"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.25" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <ImageView
-                    android:id="@+id/selectPhoto"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerInParent="true"
-                    android:layout_marginRight="20dp"
-                    android:clickable="true"
-                    android:src="@drawable/uploadgray" />
-            </RelativeLayout>
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
+                android:fontFamily="@font/nanum_acb"
+                android:text="도시 리스트  >  "
+                android:textSize="15dp"
+                app:layout_constraintBottom_toTopOf="@+id/recycle_main"
+                app:layout_constraintEnd_toStartOf="@+id/selectPhoto"
+                app:layout_constraintHorizontal_bias="0.075"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.048" />
+
+            <ImageView
+                android:id="@+id/selectPhoto"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerInParent="true"
+                android:clickable="true"
+                android:src="@drawable/uploadgray"
+                app:layout_constraintBottom_toTopOf="@+id/recycle_main"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.963"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.395" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycle_main"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_below="@id/textView5"
+                android:layout_marginTop="88dp"
+                android:padding="10dp"
+                android:nestedScrollingEnabled="false"
                 android:orientation="vertical"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView5"
-                app:layout_constraintVertical_bias="0.529" />
-        </LinearLayout>
-
-
-    </LinearLayout>
-
-</ScrollView>
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

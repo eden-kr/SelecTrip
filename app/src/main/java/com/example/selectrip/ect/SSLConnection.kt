@@ -1,6 +1,7 @@
-package com.example.selectrip
+package com.example.selectrip.ect
 
 import android.content.Context
+import com.example.selectrip.R
 import java.io.InputStream
 import java.security.KeyStore
 import java.security.cert.CertificateFactory

@@ -2,20 +2,14 @@ package com.example.selectrip
 
 import android.Manifest
 import android.app.Activity
-import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.database.Cursor
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.graphics.Matrix
-import android.graphics.Paint
-import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import android.os.*
-import android.provider.DocumentsContract
 import android.provider.MediaStore
 import android.util.Log
 import android.view.Menu
@@ -26,9 +20,7 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import com.google.gson.GsonBuilder
-import kotlinx.android.synthetic.main.activity_recommand.*
-import kotlinx.android.synthetic.main.activity_review.*
+import com.example.selectrip.Retrofit.MyRetrofit
 import kotlinx.android.synthetic.main.activity_select_image.*
 import okhttp3.*
 import org.jetbrains.anko.alert
@@ -37,15 +29,7 @@ import org.jetbrains.anko.yesButton
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.Body
-import retrofit2.http.Multipart
 import java.io.*
-import java.net.InetSocketAddress
-import java.net.Socket
-import java.net.URI
-import java.net.URL
 import java.util.*
 
 var cityName: String = ""  //컴퓨터가 select한 도시명  (추천 도시명)
@@ -53,7 +37,6 @@ var cityName: String = ""  //컴퓨터가 select한 도시명  (추천 도시명
 class SelectImageActivity : AppCompatActivity() {
 
     private val REQUEST_READ_EXTERNAL_STORAGE = 1000 //
-    private val GET_GALLERY_NAME = 200
     var file: File? = null
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)

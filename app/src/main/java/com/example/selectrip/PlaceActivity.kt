@@ -13,9 +13,15 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.selectrip.Adapter.ReviewAdapter
+import com.example.selectrip.DTO.Place
+import com.example.selectrip.DTO.PlaceReview
+import com.example.selectrip.DTO.UserReviewDTO
+import com.example.selectrip.Retrofit.MyRetrofit
 import com.google.android.gms.maps.*
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_place.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -102,6 +108,7 @@ class PlaceActivity : AppCompatActivity(), OnMapReadyCallback {
             override fun onFailure(call: Call<Char>, t: Throwable) {
                 throw t
             }
+
             override fun onResponse(call: Call<Char>, response: Response<Char>) {
                 var flag = response.body()
                 when (flag) {
@@ -121,13 +128,7 @@ class PlaceActivity : AppCompatActivity(), OnMapReadyCallback {
 
     fun loadRecycleView() {
         //유저 리뷰 받아오기
-        var userReview = UserReviewThread(this, place.name).execute().get()
-        //리사이클러뷰
-        var placeRecyclerView = findViewById<RecyclerView>(R.id.p_recycle)
-        var adapter = ReviewAdapter(this, userReview as ArrayList<UserReviewVO>)
-        adapter.setHasStableIds(true)       //각 항목마다 고유의 아이디 부여
-        placeRecyclerView.adapter = adapter
-        adapter.notifyDataSetChanged()
+       UserReviewThread(this, place.name,p_recycle).execute()
     }
 
     //뷰 갱신
@@ -185,22 +186,38 @@ class PlaceActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
 }
+
 //리뷰를 가져올 스레드
-class UserReviewThread(var context: Context, var stName: String) :
-    AsyncTask<Void, Void, List<UserReviewVO>>() {
-    override fun doInBackground(vararg p0: Void?): List<UserReviewVO> {
-        var list = arrayListOf<UserReviewVO>()
+class UserReviewThread(var context: Context, var stName: String,val recyclerView: RecyclerView) :
+    AsyncTask<Void, Void, List<UserReviewDTO>>() {
+    override fun doInBackground(vararg p0: Void?): List<UserReviewDTO> {
+        var list = arrayListOf<UserReviewDTO>()
         try {
-            MyRetrofit.getInstance(context).getReview(stName).execute().body()?.let { list.addAll(it) }
+            MyRetrofit.getInstance(context).getReview(stName).execute().body()
+                ?.let { list.addAll(it) }
         } catch (e: Exception) {
             Log.d("myTag", "${e.printStackTrace()}")
         }
         return list
     }
+
+    override fun onPostExecute(result: List<UserReviewDTO>?) {
+        super.onPostExecute(result)
+        //리사이클러뷰
+        var adapter = ReviewAdapter(context, result as ArrayList<UserReviewDTO>)
+        adapter.setHasStableIds(true)       //각 항목마다 고유의 아이디 부여
+        recyclerView.adapter = adapter
+        adapter.notifyDataSetChanged()
+    }
 }
 
 //즐겨찾기 스레드  - setBookmark
-class BookrmarkThread(var context: Context, var flag: String, var userid: String, var place: String) : AsyncTask<Void, Void, String>() {
+class BookrmarkThread(
+    var context: Context,
+    var flag: String,
+    var userid: String,
+    var place: String
+) : AsyncTask<Void, Void, String>() {
     var res: String = ""
     override fun doInBackground(vararg p0: Void?): String {
         try {

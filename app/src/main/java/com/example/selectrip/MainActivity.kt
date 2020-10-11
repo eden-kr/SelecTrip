@@ -11,21 +11,17 @@ import android.util.Log
 import android.view.animation.AlphaAnimation
 import android.view.animation.TranslateAnimation
 import android.widget.Toast
-import com.google.gson.GsonBuilder
-import com.google.gson.annotations.Expose
-import com.google.gson.annotations.SerializedName
+import com.example.selectrip.DTO.CheckUser
+import com.example.selectrip.DTO.User
+import com.example.selectrip.Retrofit.MyRetrofit
 import com.kakao.sdk.auth.LoginClient
 import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.common.util.Utility
 import com.kakao.sdk.user.UserApiClient
 import kotlinx.android.synthetic.main.activity_main.*
-import okhttp3.OkHttpClient
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-import java.io.Serializable
 import java.lang.Exception
 import java.util.*
 import kotlin.system.exitProcess
@@ -33,33 +29,6 @@ import kotlin.system.exitProcess
 var nickName: String? = null      //현재 사용자 닉네임을 담아 놓은 전역변수
 var Id: String? = null
 var imageArr = arrayListOf<Int>(R.drawable.p1, R.drawable.p3, R.drawable.p7)
-
-//singleton retrofit
-object MyRetrofit {
-        private const val url = "https://192.168.1.47:5000"
-        private val hostVr = HostVerifier()
-        private val sslC = SSLConnection()
-        private val gs = GsonBuilder()
-            .setLenient()
-            .create()
-        @Volatile private var server: RetrofitInterface? = null
-
-        fun getInstance(context: Context): RetrofitInterface =
-            server ?: synchronized(this) {
-                server ?: retrofit(url, context).also { server = it }
-            }
-
-        private fun retrofit(url : String, context: Context): RetrofitInterface {
-            return Retrofit.Builder().baseUrl(url)
-                .client(
-                    OkHttpClient.Builder()
-                        .sslSocketFactory(sslC.getSocketFactory(context))
-                        .hostnameVerifier(hostVr)
-                        .build()
-                ).addConverterFactory(GsonConverterFactory.create(gs))
-                .build().create(RetrofitInterface::class.java)
-        }
-    }
 
 class MainActivity : AppCompatActivity() {
 
@@ -254,11 +223,3 @@ class ExceptionHandler(var context: Context) : Thread.UncaughtExceptionHandler {
     }
 }
 
-data class CheckUser(
-    @SerializedName("check")
-    @Expose
-    val check: String,
-    @SerializedName("nickname")
-    @Expose
-    val nickname: String
-) : Serializable

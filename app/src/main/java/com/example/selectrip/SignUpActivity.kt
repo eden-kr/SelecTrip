@@ -9,8 +9,8 @@ import android.text.TextWatcher
 import android.util.Log
 import android.widget.Toast
 import androidx.core.view.ViewCompat
-import com.google.gson.annotations.Expose
-import com.google.gson.annotations.SerializedName
+import com.example.selectrip.DTO.User
+import com.example.selectrip.Retrofit.MyRetrofit
 import kotlinx.android.synthetic.main.activity_sign_up.*
 import org.jetbrains.anko.alert
 import org.jetbrains.anko.yesButton
@@ -118,14 +118,3 @@ class SignUpActivity : AppCompatActivity() {
         return flag
     }
 }
-data class User(        //회원가입에 사용될 User
-    @Expose
-    @SerializedName("id")
-    var id: String,
-    @Expose
-    @SerializedName("password")
-    var password: String,
-    @Expose
-    @SerializedName("nickname")
-    var nickname: String
-) {}

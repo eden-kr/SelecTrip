@@ -1,5 +1,9 @@
-package com.example.selectrip
+package com.example.selectrip.Retrofit
 
+import com.example.selectrip.DTO.*
+import com.example.selectrip.POJO.ImageList
+import io.reactivex.Observable
+import io.reactivex.Single
 import okhttp3.MultipartBody
 import retrofit2.Call
 import retrofit2.http.*
@@ -8,11 +12,11 @@ import kotlin.collections.ArrayList
 //외부 url 연결 API
 //환율 정보
 interface InternetAPI{
-    @GET("exchangeJSON?authkey=cu2vhZW67wi14lu7dTy2Q9JqrT2YN3JM")
+    @GET("exchangeJSON?authkey=")
     fun getExchangeRate(
         @Query("searchdate") date : String,     //동적으로 GET하려면 Query를 이용해야 함!!
         @Query("data") dt : String
-    ) : Call<List<Exchange>>
+    ) : Single<List<Exchange>>
 
 //날씨 정보
     @GET("onecall?")
@@ -21,8 +25,9 @@ interface InternetAPI{
         @Query("lon") lon : String,
         @Query("exclude") exclude : String,
         @Query("appid") uid : String
-    ) : Call<WeatherInfo>
+    ) : Single<WeatherInfo>
 }
+
 interface RetrofitInterface {
     @FormUrlEncoded
     @POST("change_password")
@@ -72,12 +77,17 @@ interface RetrofitInterface {
     fun mainDB(
     ): Call<List<City>>
 
+    //메인 화면 정보를 가져올  API
+    @POST("/main")
+    fun getMainView(
+    ): Observable<List<City>>
+
     //유저 리뷰를 가져올 API
     @FormUrlEncoded
     @POST("/review")
     fun getReview(
         @Field("stName") stName: String
-    ): Call<List<UserReviewVO>>
+    ): Call<List<UserReviewDTO>>
 
     //리뷰 수 및 평점을 가져올 API
     @POST("/preview")
@@ -125,7 +135,7 @@ interface RetrofitInterface {
         @Field("userid") id: String,
         @Field("type") type: String
 
-    ): Call<ArrayList<UserReviewVO>>
+    ): Call<ArrayList<UserReviewDTO>>
 
     //마이페이지 북마크 API
     @FormUrlEncoded

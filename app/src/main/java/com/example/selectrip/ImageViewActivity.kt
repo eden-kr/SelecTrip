@@ -5,20 +5,14 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.BaseAdapter
 import android.widget.GridView
-import android.widget.ImageView
-import com.bumptech.glide.Glide
-import com.google.gson.annotations.Expose
-import com.google.gson.annotations.SerializedName
+import com.example.selectrip.Adapter.ImageListView
+import com.example.selectrip.POJO.ImageList
+import com.example.selectrip.Retrofit.MyRetrofit
 import kotlinx.android.synthetic.main.activity_image_view.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.io.Serializable
 
 //사용자 리뷰 및 해당 가게 사진을 모아서 띄우는 이미지 앨범
 class ImageViewActivity : AppCompatActivity() {
@@ -60,51 +54,4 @@ class ImageViewActivity : AppCompatActivity() {
         })
     }
 }
-class ImageListView(var context: Context,var list : ArrayList<ImageList>) : BaseAdapter(){
-    lateinit var view : View
-    lateinit var holder : ImageViewHolder
-    override fun getView(postion: Int, counterView: View?, parent: ViewGroup?): View {
-        holder = ImageViewHolder()
-        if(counterView == null){
-            view = LayoutInflater.from(context).inflate(R.layout.image,null)
-            holder.image = view.findViewById(R.id.each_image)
-            view.tag = holder
-        }else{
-            holder = counterView.tag as ImageViewHolder
-            view = counterView
-        }
-        Glide.with(context).load(list[postion].img).into(holder.image!!)        //이미지 설정
 
-        holder.image?.setPadding(2,2,2,2)
-        holder.image?.scaleType = ImageView.ScaleType.FIT_XY
-
-        return view
-    }
-
-    override fun getItem(p0: Int): Any {
-        return p0
-    }
-
-    override fun getItemId(p0: Int): Long {
-        return p0.toLong()
-    }
-
-    override fun getCount(): Int {
-        return list.size
-    }
-}
-//이미지 홀더
-class ImageViewHolder{
-    var image : ImageView? = null
-}
-
-//이미지를 받아올 클래스
-//koltin Pojo class
-class ImageList(
-    @Expose
-    @SerializedName("NAME")
-    var name : String,
-    @Expose
-    @SerializedName("image")
-    var img : String
-):Serializable

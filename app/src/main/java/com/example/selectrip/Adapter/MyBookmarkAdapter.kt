@@ -1,4 +1,4 @@
-package com.example.selectrip
+package com.example.selectrip.Adapter
 
 import android.content.Context
 import android.content.Intent
@@ -10,6 +10,9 @@ import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.selectrip.DTO.Place
+import com.example.selectrip.PlaceActivity
+import com.example.selectrip.R
 import kotlinx.android.synthetic.main.bookmark_layout.view.*
 
 class MyBookmarkAdapter(var context : Context, var list : ArrayList<Place>) : RecyclerView.Adapter<BookmarkHolder>() {
@@ -31,7 +34,7 @@ class MyBookmarkAdapter(var context : Context, var list : ArrayList<Place>) : Re
 
         holder.itemView.setOnClickListener {
             var pos = holder.adapterPosition        //position
-            val intent = Intent(context,PlaceActivity::class.java)
+            val intent = Intent(context, PlaceActivity::class.java)
             val bundle = Bundle()
             bundle.putSerializable("place",list[pos])
             intent.putExtra("bundle",bundle)      //가게정보 객체를 PlaceActivity에 넘겨주고 실행

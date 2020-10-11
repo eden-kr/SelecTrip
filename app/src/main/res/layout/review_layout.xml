@@ -40,7 +40,10 @@
         android:id="@+id/user_review"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="40dp"
+        android:layout_marginRight="35dp"
+        android:layout_marginLeft="35dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
         android:text="너무 재미있었어요 다시 가고 싶네요.."
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/user_rating" />
@@ -48,11 +51,14 @@
 
     <ImageView
         android:id="@+id/user_image"
-        android:layout_width="271dp"
+        android:layout_width="match_parent"
+        android:layout_marginRight="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="20dp"
         android:layout_height="160dp"
         android:background="@drawable/round_no_color"
         android:orientation="horizontal"
-        android:scaleType="fitXY"
+        android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -63,7 +69,7 @@
         android:id="@+id/user_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="52dp"
         android:text="2020.08.06"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.952"
@@ -104,7 +110,7 @@
         app:layout_constraintHorizontal_bias="0.043"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/user_image"
-        app:layout_constraintVertical_bias="0.1" />
+        app:layout_constraintVertical_bias="0.436" />
 
     <TextView
         android:id="@+id/review_count"
@@ -117,7 +123,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/like_review"
         app:layout_constraintTop_toBottomOf="@+id/user_image"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.38" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

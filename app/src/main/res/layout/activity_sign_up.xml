@@ -9,8 +9,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
-        android:layout_width="409dp"
-        android:layout_height="209dp"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
         app:layout_constraintBottom_toTopOf="@+id/signId"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -20,11 +20,11 @@
             android:id="@+id/back_sighup"
             android:layout_width="35dp"
             android:layout_height="35dp"
-            android:layout_marginBottom="100dp"
+            android:layout_marginBottom="80dp"
             android:src="@drawable/close_black"
             app:layout_constraintBottom_toBottomOf="@+id/textView4"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.957"
+            app:layout_constraintHorizontal_bias="0.964"
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
@@ -37,10 +37,10 @@
             android:textSize="40dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.194"
+            app:layout_constraintHorizontal_bias="0.161"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.495" />
+            app:layout_constraintVertical_bias="0.709" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -60,11 +60,11 @@
         android:layout_width="250dp"
         android:layout_height="50dp"
         android:layout_gravity="center"
-        android:layout_marginBottom="40dp"
-        android:textCursorDrawable="@drawable/cursor_style"
+        android:layout_marginBottom="36dp"
         android:cursorVisible="true"
         android:hint="이메일을 입력해주세요."
         android:inputType="textEmailAddress"
+        android:textCursorDrawable="@drawable/cursor_style"
         app:layout_constraintBottom_toTopOf="@+id/signPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.173"
@@ -88,13 +88,13 @@
         android:layout_width="250dp"
         android:layout_height="50dp"
         android:layout_gravity="center"
-        android:layout_marginTop="344dp"
-        android:textCursorDrawable="@drawable/cursor_style"
+        android:layout_marginTop="288dp"
         android:cursorVisible="true"
         android:hint="패스워드를 입력해주세요."
         android:inputType="none|textWebPassword"
+        android:textCursorDrawable="@drawable/cursor_style"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.173"
+        app:layout_constraintHorizontal_bias="0.186"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -129,7 +129,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginLeft="30dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="80dp"
         android:layout_marginRight="30dp"
         android:background="@drawable/selectedimageshape"
         android:clickable="true"
@@ -151,11 +151,10 @@
         android:textColor="#858585"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.476"
+        app:layout_constraintHorizontal_bias="0.75"
         app:layout_constraintStart_toEndOf="@+id/signId"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
-        app:layout_constraintVertical_bias="0.0" />
-
+        app:layout_constraintVertical_bias="0.005" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,38 +4,42 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.AsyncTask
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.EditText
-import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.selectrip.Adapter.DetailRecyclerAdapter
+import com.example.selectrip.DTO.City
+import com.example.selectrip.DTO.Daily
+import com.example.selectrip.DTO.Exchange
+import com.example.selectrip.DTO.WeatherInfo
+import com.example.selectrip.Retrofit.InternetAPI
+import com.example.selectrip.Retrofit.RxRetrofit
+import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.disposables.Disposable
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_detail.*
-import kotlinx.android.synthetic.main.weather_layout.view.*
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.lang.Exception
 import java.text.SimpleDateFormat
-import java.time.Instant
-import java.time.ZoneId
-import java.time.format.DateTimeFormatter
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.math.roundToInt
 
 class DetailActivity : AppCompatActivity() {
-    var exList = ExchangeTh(this).execute()?.get() //환율정보 받아오기
-    var kfRate : Double = 0.0     //환율
-    var lat : Double = 0.0
-    var lon : Double = 0.0
+   // private var exList = ExchangeTh(this).execute()?.get() //환율정보 받아오기
+    private var kfRate : Double = 0.0     //환율
+    private var lat : Double = 0.0
+    private var lon : Double = 0.0
+    private val composite = CompositeDisposable()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,31 +52,54 @@ class DetailActivity : AppCompatActivity() {
         var money : String = ""
         var fMoney : String = ""
 
+
         //뷰 그리기
         detail_country_name.text = "${cityName},"
         Glide.with(this).load(city?.mainImg).into(detail_country_img)
         money = city?.money.toString()
         lat = city!!.lat
         lon = city!!.lon
-        //환율 설정
-        for(i in exList!!.indices){
-            if(exList!![i].cur_unit.contains(money)){   //같은 통화를 사용하면
-                fMoney = exList!![i].cur_unit  //해외 통화단위를 변경
-                kfRate = exList!![i].deal_bas_r.replace(",","").toDouble()     // 환율 가져오기
-            }
-        }
-        fmoneyName.text = fMoney
 
-        //리사이클러뷰, 날씨 설정
-        var weather = WeatherTh(this,lat.toString(),lon.toString()).execute().get()  //Retrofit2으로 json 가져오기 값 잘 들어옴
-        var dailyList = arrayListOf<Daily>()
-        dailyList.addAll(weather.daily)
 
-        var wrView  : RecyclerView = findViewById(R.id.detailWeather)
-        val lMananer = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false)
-        wrView.adapter = DetailRecyclerAdapter(this,dailyList)
-        wrView.layoutManager = lMananer
 
+        var disposable : Disposable = Retrofit.Builder()
+            .baseUrl(getString(R.string.weather_url))
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create()).build()
+            .create(InternetAPI::class.java)
+            .getWeather(lat.toString(),lon.toString(),"current,minutely,hourly",getString(R.string.weather_API_key))
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe( { items->
+                //리사이클러뷰, 날씨 설정
+                detailWeather.adapter = DetailRecyclerAdapter(this, items.daily.toMutableList() as ArrayList<Daily>)
+                detailWeather.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false)
+            },{
+                Log.d("myTag","weather data can not access ${it.printStackTrace()}")
+                throw it
+            }).apply { composite.add(this) }
+
+        var rateDisposable : Disposable = Retrofit.Builder()
+            .baseUrl(getString(R.string.rate_url))
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create())
+            .build().create(InternetAPI::class.java)
+            .getExchangeRate(getDate(),"AP01")
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe ({ items ->
+                //환율 설정
+                for(i in items.indices){
+                    if(items[i].cur_unit.contains(money)){   //같은 통화를 사용하면
+                        fMoney = items[i].cur_unit  //해외 통화단위를 변경
+                        kfRate = items[i].deal_bas_r.replace(",","").toDouble()     // 환율 가져오기
+                    }
+                }
+                fmoneyName.text = fMoney
+            },{
+                Log.d("myTag","change Rate data can not access ${it.printStackTrace()}")
+                throw it
+            }).apply { composite.add(this) }
         Log.d("myTag","$kfRate 환율정보  $money 돈")
 
 
@@ -103,7 +130,7 @@ class DetailActivity : AppCompatActivity() {
 
         //뒤로가기
         close_detail.setOnClickListener {
-            finish()
+            this.finish()
         }
         drawer_detail.setOnClickListener {
             val intent = Intent(this,MyPageActivity::class.java)
@@ -153,91 +180,6 @@ class DetailActivity : AppCompatActivity() {
         editText.setText(text)
         editText.addTextChangedListener(textWatcher)
     }
-
-}
-//날씨 리사이클러뷰
-class DetailRecyclerAdapter(var context: Context, private val dailyList: ArrayList<Daily>) : RecyclerView.Adapter<DetailHolder>(){
-    override fun getItemCount(): Int {
-        return dailyList.size
-    }
-
-    @RequiresApi(Build.VERSION_CODES.O)
-    override fun onBindViewHolder(holder: DetailHolder, position: Int) {
-        var weather = dailyList[position]
-        holder.date.text = timeStampToGMT(weather.dt.toInt())   //타임스탬프 ->날짜
-        holder.max.text = "${(weather.temp.max-273.15).toInt()}"   //최고온도
-        holder.min.text = "${(weather.temp.min-273.15).toInt()}"   //최저온도
-        holder.rain.text = "${(weather.pop*100).toInt()}%"  //강수량
-
-        for(i in weather.weather.indices){
-            var num = weather.weather[i].id.toInt()
-            when (num) {        //id에 맞춰 날씨 이미지 설정
-                in 200..233 -> holder.weatherImg.setImageResource(R.drawable.c12)
-                in 300..322 -> holder.weatherImg.setImageResource(R.drawable.c8)
-                in 500..531 -> holder.weatherImg.setImageResource(R.drawable.c2)
-                in 600..623 -> holder.weatherImg.setImageResource(R.drawable.c5)
-                in 700..782 -> holder.weatherImg.setImageResource(R.drawable.c9)
-                800 -> holder.weatherImg.setImageResource(R.drawable.c3)
-                in 801..805 -> holder.weatherImg.setImageResource(R.drawable.c4)
-            }
-        }
-    }
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DetailHolder {
-        var view = LayoutInflater.from(parent.context).inflate(R.layout.weather_layout, null)
-        return DetailHolder(view)
-    }
-
-    @RequiresApi(Build.VERSION_CODES.O)
-    fun timeStampToGMT(timeStamp : Int):String{
-        var format = DateTimeFormatter.ofPattern("yyyy-MM-dd")
-        var formatStamp = Instant.ofEpochSecond(timeStamp.toLong())
-            .atZone(ZoneId.of("GMT-4"))
-            .format(format)
-        return formatStamp
-    }
-
-}
-class DetailHolder(view : View):RecyclerView.ViewHolder(view){
-    var max = view.maxTmp   //최고온도
-    var min = view.minTmp   //최저온도
-    var date = view.date    //날짜
-    var weatherImg = view.weatherImg
-    var rain = view.rain    //강수확률
-}
-//날씨 정보를 가져오는 쓰레드
-class WeatherTh(var context: Context,var lat: String,var lon: String) : AsyncTask<Void,Void,WeatherInfo>(){
-    override fun doInBackground(vararg p0: Void?): WeatherInfo? {
-        val uid = "f23facc81f46689549e5d5532a430c37"        //API KEY
-        var exclude = "current,minutely,hourly"             //현재,분,시간당 단위 제외
-        var weather : WeatherInfo?
-        val u = "http://api.openweathermap.org/data/2.5/"
-
-        try {
-            weather = getServer(u).getWeather(lat, lon, exclude, uid).execute().body()
-        }catch (e : Exception){
-            Log.d("myTag", e.printStackTrace().toString())
-            throw e
-        }
-        return weather
-    }
-}
-/*https://www.koreaexim.go.kr/site/program/openapi/openApiView?menuid=001003002002001&apino=2&viewtype=C*/
-//환율을 가져올 스레드
-class ExchangeTh(var context: Context): AsyncTask<Void,Void,List<Exchange>>(){
-    var dt = getDate()
-    var exList = arrayListOf<Exchange>()
-    override fun doInBackground(vararg p0: Void?): List<Exchange> {
-        val u = "https://www.koreaexim.go.kr/site/program/financial/"
-        try {
-            getServer(u).getExchangeRate(dt,"AP01").execute().body()?.let { exList.addAll(it) }
-            Log.d("myTag","success")
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-        return exList
-    }
-
     fun getDate(): String {
         //API 조건 토,일요일은 null값을 반환
         //토,일요일이면 금요일의 환율 값을 가져와서 받아와야함.
@@ -270,7 +212,10 @@ class ExchangeTh(var context: Context): AsyncTask<Void,Void,List<Exchange>>(){
         }
         return dt
     }
-}
-fun getServer(url : String) : InternetAPI{
-    return Retrofit.Builder().baseUrl(url).addConverterFactory(GsonConverterFactory.create()).build().create(InternetAPI::class.java)
+
+    override fun onDestroy() {
+        super.onDestroy()
+        composite.dispose()
+    }
+
 }

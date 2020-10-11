@@ -9,19 +9,21 @@ import android.view.*
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.NO_POSITION
-import com.bumptech.glide.Glide
-import com.google.gson.annotations.Expose
-import com.google.gson.annotations.SerializedName
+import com.example.selectrip.Adapter.RecAdapter
+import com.example.selectrip.DTO.City
+import com.example.selectrip.DTO.RecommendCity
+import com.example.selectrip.Retrofit.MyRetrofit
+import com.example.selectrip.Retrofit.RxRetrofit
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.activity_recommand.*
-import kotlinx.android.synthetic.main.recommend_city.view.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 
 class RecommandActivity : AppCompatActivity() {
-
+    private val composite = CompositeDisposable()
     override fun onStart() {
         super.onStart()
         var id_rec = findViewById<TextView>(R.id.id_recommend)
@@ -34,7 +36,7 @@ class RecommandActivity : AppCompatActivity() {
         setSupportActionBar(recToolbar)
 
         //리사이클뷰 설정
-        var cityList = getCityDb(this).execute()?.get()     //도시 받아오기
+        var cityList = SearchActivity.getCityDb(this).execute()?.get()     //도시 받아오기
         var city = cityList?.let { getLatLng(it) }
         getRecommendCity(this,city!!.lat,city!!.lon,cityList!!)          //추천도시 리스트
 
@@ -121,46 +123,4 @@ class RecommandActivity : AppCompatActivity() {
     }
 }
 
-//리사이클뷰 어댑터
-class RecAdapter(private var List: ArrayList<City>,var context: Context) : RecyclerView.Adapter<RecViewHolder>() {
-    override fun getItemCount(): Int {
-        return List.size
-    }
 
-    override fun onBindViewHolder(holder: RecViewHolder, position: Int) {
-
-        holder.name.text = List[position].city
-        Glide.with(context).load(List[position].img).into(holder.image)
-
-        holder.itemView.setOnClickListener {
-            var pos = holder.adapterPosition
-            if(pos != NO_POSITION){     //포지션이 없는지 검사
-                val intent = Intent(context, DetailActivity::class.java)
-                val bundle = Bundle()
-                bundle.putSerializable("City",List[pos])
-                intent.putExtra("bundle",bundle)
-                intent.putExtra("CITYNAME",holder.name.text.toString())
-                context.startActivity(intent)
-            }
-        }
-    }
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecViewHolder {
-        val view =
-            LayoutInflater.from(parent.context).inflate(R.layout.recommend_city, parent, false)
-        return RecViewHolder(view)
-
-    }
-}
-//리사이클러뷰 홀더
-class RecViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-    var image = itemView.city_rec
-    var name = itemView.cityname_rec
-
-    //리스트뷰와 다르게 아이템 뷰에서 클릭을 처리함
-}
-class RecommendCity(
-    @Expose
-    @SerializedName("name")
-    var name : String
-)

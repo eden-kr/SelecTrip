@@ -22,6 +22,10 @@ import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
+import com.example.selectrip.DTO.ImageDTO
+import com.example.selectrip.DTO.UpdateReviewDTO
+import com.example.selectrip.DTO.UserReview
+import com.example.selectrip.Retrofit.MyRetrofit
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.ktx.storage
@@ -44,12 +48,12 @@ class ReviewActivity : AppCompatActivity() {
     private val PICK_IMAGE = 1111
     var placeName : String? = ""
     lateinit var uReview : UserReview
-    var updateRv : UpdateReviewVO? = null
+    var updateRv : UpdateReviewDTO? = null
     var prevUrl : String? = null
     var prevName : String? = null
     var case = 1        //update 시 1이면 글만 저장 2면 사진 저장
     var postId : Int? = null
-    lateinit var imageVo : ImageVO
+    lateinit var imageVo : ImageDTO
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -139,7 +143,7 @@ class ReviewActivity : AppCompatActivity() {
                     task?.addOnSuccessListener {
                         var url = it.toString()         //image url
                         var path = it.lastPathSegment.toString()
-                        imageVo = ImageVO(url,path)
+                        imageVo = ImageDTO(url,path)
                     }
                 }
                 //UPDATE
@@ -165,7 +169,7 @@ class ReviewActivity : AppCompatActivity() {
                     task?.addOnSuccessListener {
                         var url = it.toString()         //image url
                         var path = it.lastPathSegment.toString()
-                        imageVo = ImageVO(url,path)
+                        imageVo = ImageDTO(url,path)
                         Log.d("myTag","fireStorage! catch? ${imageVo.url}")
                         case = 2
                     }
@@ -176,10 +180,10 @@ class ReviewActivity : AppCompatActivity() {
     }
     //리뷰 수정
     @RequiresApi(Build.VERSION_CODES.O)
-    fun updateReview(url : String, path : String, id : Int):UpdateReviewVO {
+    fun updateReview(url : String, path : String, id : Int):UpdateReviewDTO {
         var rv : String = review.text.toString()                  //리뷰내용
         var rate : Double? = if(review_rating.rating.equals(0)) 1.0 else review_rating.rating.toDouble()          //평점
-        return UpdateReviewVO(id,url,path,rate!!,rv)
+        return UpdateReviewDTO(id,url,path,rate!!,rv)
     }
     //툴바에 아이콘 메뉴 설정
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
